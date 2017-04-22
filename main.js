@@ -1,3 +1,5 @@
+//NOTES/INSTRUCTIONS IN COMMENTS ARE FROM TRAVIS' AFTER HOURS WALKTHROUGH OF THIS ASSIGNMENT
+
 var forEach = function(arr, func){
     for(var i = 0 ; i < arr.length; i++){
         func(arr[i], i, arr)
@@ -102,21 +104,18 @@ document.querySelector("#remove button").addEventListener('click',function(){
 
 document.querySelector("#reverse-squares button").addEventListener('click',function(){
   // TASK #6
-  // (1) seleect all elements that are have class of .square w/ document.querySelectorAll()
 
-  // OPTIMAL
- // (2) iterate over elements backwards ... for ( var i = allSquares.length - 1 ; i >= 0 ; i-- )
-  // (3) select #reverse-squares .answer-box and .appendChild( squareDomElement  )
-
- /// ALTERNATEIVE
- //  (2) create an empty array called reverseOrderSquaresList
-///  (3) iterate over elements and .unshif() each element to the beginning of reverseOrderSquaresList
- //  (4) clear the #reverse-squares .answer-box  (.innerHTML = '')
-//   (5) iterate over reverseOrderSquaresList
-//   (6) inside loop, you will add element to reverse-squares .answer-box with .appendChild( squareDomElement )
-//
+    var selectAllSquares = document.querySelectorAll ('.square');
+    var selectRevSquareAndAnsBox = document.querySelector ('#reverse-squares .answer-box');
+    selectRevSquareAndAnsBox.innerHTML=''
+      for(var i = selectAllSquares.length - 1 ; i >= 0 ; i--){
+        var  reversedSquares = selectAllSquares[i];
+        var  string = "<span class='" + reversedSquares.className + "'>" + reversedSquares.textContent + "</span>"
+        selectRevSquareAndAnsBox.innerHTML += string
+      }
 
 })
+
 
 document.querySelector("#pig-latin button").addEventListener('click',function(){
   // TASK #7
@@ -131,8 +130,17 @@ document.querySelector("#pig-latin button").addEventListener('click',function(){
 
     //  (3) inside of for-loop set DOMElement.innerHTML to the variable containing reversed string
     //
+      var selectTasks = document.querySelector ('#tasks')
+      var selectAllTaskLi = document.querySelectorAll ('#tasks li')
+      selectTasks.innerHTML = ''
+        forEach(selectAllTaskLi, function(li, i, theArray){
+          var strings = li;
+          var stringContent = strings.textContent;
+          var stringBackward = stringContent.split('').reverse('').join('')
+          selectTasks.innerHTML += '<li>' + stringBackward + '</li>';
+        })
 })
 
 document.querySelector("#cycle-image button").addEventListener('click',function(){
-   //TASK #8
+   //TASK #8 (Adventure Mode)
 })
