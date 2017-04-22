@@ -13,9 +13,12 @@ document.querySelector("#double button").addEventListener('click',function(){
   // TASK #2
   var answerPTagWithValue = document.querySelector('#compoundInvestment')
   // you do the rest
-
+  var value = parseInt(answerPTagWithValue.textContent);
+  var multiplyValue = value * 2;
+  answerPTagWithValue.innerHTML = multiplyValue;
 })
 
+//Task #3
 document.querySelector("#color-circle button").addEventListener('click',function(){
   var circleEl = document.querySelector (".circle-bw");
   var circleEl = document.querySelector('#circle-bw')
@@ -45,8 +48,8 @@ document.querySelector("#blow-up button").addEventListener('click',function(){
   //------------------------------------------------
 
   // (1) select Circle Elment (circle-red)
-  // (2) Get the pixel string value of width and height of circle-red
-  // (3) convert pixel string value into an integer (parseInt(...))
+  // (2) Get the pixel value of width and height of circle-red
+  // (3) convert pixel value into an integer (parseInt(...))
 
   // PART 2 --- check to see if integer-width >= 320
   //------------------------------------------------
@@ -57,7 +60,22 @@ document.querySelector("#blow-up button").addEventListener('click',function(){
   //    (4a)        assign circle-red .style.width & .style.width  = 'XXpx' string
 
   //    (2b)   ELSE assign circle-red .style.width & .style.height = '40px' string
+      var selectCircleEl = document.querySelector('.circle-red');
+      var getPixelVal = window.getComputedStyle(selectCircleEl);
+      var widthVal = parseInt(getPixelVal.width);
+      var heightVal = parseInt(getPixelVal.height);
+      // console.log(widthVal, heightVal)
+      //console says 40 x 40
+      if(widthVal < 320) {
+        var bigCircleWidth = widthVal * 2;
+        var bigCircleHeight = heightVal * 2;
+        selectCircleEl.style.width = bigCircleWidth + "px";
+        selectCircleEl.style.height = bigCircleHeight + "px";
+      } else {
+        selectCircleEl.style.width = "40px";
+        selectCircleEl.style.height = "40px";
 
+  }
 })
 
 document.querySelector("#remove button").addEventListener('click',function(){
